@@ -4,8 +4,8 @@
   "description": "Dummy API",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "clean:dist": "rimraf dist/",
+    "build": "npm run clean && tsc",
+    "clean": "rimraf dist/",
     "dev": "npm run clean:dist && tsc && node dist/index.js",
     "prod": "node dist/index.js",
     "start": "npm run prod"
