@@ -9,7 +9,6 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const dummy_1 = __importDefault(require("./routes/v0/dummy"));
-const apiResponse_1 = require("./utils/apiResponse");
 const corsOption = {
     origin: '*',
     optionSuccessStatus: 200,
@@ -22,11 +21,7 @@ app.use(body_parser_1.urlencoded({ extended: true }));
 app.use(body_parser_1.json());
 app.use(morgan_1.default('combined'));
 app.use('/v0', dummy_1.default);
-app.all('*', (req, res) => {
-    res.status(apiResponse_1.NOT_FOUND).json(apiResponse_1.failedAPIResponse(`API ${req.method} ${req.url} not found`));
-});
 app.listen(port, () => {
-    // eslint-disable-next-line no-console
     console.log('App is live @', port);
 });
 //# sourceMappingURL=index.js.map

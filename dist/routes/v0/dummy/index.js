@@ -26,5 +26,8 @@ dummy.post('*', (request, response) => __awaiter(void 0, void 0, void 0, functio
         response.status(request.body.status).json(Object.assign({}, apiResponse_1.failedAPIResponse(errorMessage, errorCode)));
     }
 }));
+dummy.get('*', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    response.status(apiResponse_1.SUCCESS).json(apiResponse_1.successAPIResponse('Success dummy GET API!'));
+}));
 exports.default = dummy;
 //# sourceMappingURL=index.js.map

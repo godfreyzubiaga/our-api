@@ -17,4 +17,8 @@ dummy.post('*', async (request, response) => {
   }
 });
 
+dummy.get('*', async (request, response) => {
+  response.status(SUCCESS).json(successAPIResponse('Success dummy GET API!'));
+});
+
 export default dummy;
