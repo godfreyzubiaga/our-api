@@ -1,3 +1,4 @@
+import { INTERNAL_SERVER_ERROR } from './../../../utils/apiResponse';
 import express from 'express';
 
 import { SUCCESS, failedAPIResponse, successAPIResponse } from '../../../utils/apiResponse';
@@ -18,7 +19,11 @@ dummy.post('*', async (request, response) => {
 });
 
 dummy.get('*', async (request, response) => {
-  response.status(SUCCESS).json(successAPIResponse('Success dummy GET API!'));
+  if (request.path.split('/')[1] === 'fail') {
+    response.status(INTERNAL_SERVER_ERROR).json({ ...failedAPIResponse('Failed dummy GET API.'), apiPath: request.path });
+  } else {
+    response.status(SUCCESS).json({ ...successAPIResponse('Success dummy GET API!'), apiPath: request.path });
+  }
 });
 
 export default dummy;
