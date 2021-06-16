@@ -13,7 +13,8 @@ dummy.post('*', async (request, response) => {
     delete dataResponse.status
     response.status(SUCCESS).json({ ...successAPIResponse(), data: dataResponse, apiPath: request.path });
   } else {
-    const { message, code } = request.body.error
+    const code = request.body.error?.code
+    const message = request.body.error?.message
     response.status(request.body.status).json({ ...failedAPIResponse(message, code), apiPath: request.path });
   }
 });

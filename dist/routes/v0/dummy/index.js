@@ -17,13 +17,15 @@ const express_1 = __importDefault(require("express"));
 const apiResponse_2 = require("../../../utils/apiResponse");
 const dummy = express_1.default.Router();
 dummy.post('*', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b;
     if (request.body.status === 200 || !request.body.status) {
         const dataResponse = Object.assign({}, request.body);
         delete dataResponse.status;
         response.status(apiResponse_2.SUCCESS).json(Object.assign(Object.assign({}, apiResponse_2.successAPIResponse()), { data: dataResponse, apiPath: request.path }));
     }
     else {
-        const { message, code } = request.body.error;
+        const code = (_a = request.body.error) === null || _a === void 0 ? void 0 : _a.code;
+        const message = (_b = request.body.error) === null || _b === void 0 ? void 0 : _b.message;
         response.status(request.body.status).json(Object.assign(Object.assign({}, apiResponse_2.failedAPIResponse(message, code)), { apiPath: request.path }));
     }
 }));
