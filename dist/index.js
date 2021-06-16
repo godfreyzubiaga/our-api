@@ -24,4 +24,10 @@ app.use('/v0', dummy_1.default);
 app.listen(port, () => {
     console.log('App is live @', port);
 });
+app.all('*', (request, response) => {
+    response.writeHead(302, {
+        'Location': 'https://github.com/godfreyzubiaga/our-api/blob/master/README.md#our-api'
+    });
+    response.end();
+});
 //# sourceMappingURL=index.js.map

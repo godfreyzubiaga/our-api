@@ -2,6 +2,7 @@ import { json, urlencoded } from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
+import { readFileSync } from 'fs';
 import morgan from 'morgan';
 
 import v0 from './routes/v0/dummy';
@@ -25,3 +26,10 @@ app.use('/v0', v0);
 app.listen(port, () => {
   console.log('App is live @', port);
 });
+
+app.all('*', (request, response) => {
+  response.writeHead(302, {
+    'Location': 'https://github.com/godfreyzubiaga/our-api/blob/master/README.md#our-api'
+  });
+  response.end();
+})
