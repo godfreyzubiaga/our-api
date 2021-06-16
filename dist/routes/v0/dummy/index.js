@@ -20,11 +20,11 @@ dummy.post('*', (request, response) => __awaiter(void 0, void 0, void 0, functio
     if (request.body.status === 200 || !request.body.status) {
         const dataResponse = Object.assign({}, request.body);
         delete dataResponse.status;
-        response.status(apiResponse_2.SUCCESS).json(Object.assign(Object.assign({}, apiResponse_2.successAPIResponse()), { data: dataResponse }));
+        response.status(apiResponse_2.SUCCESS).json(Object.assign(Object.assign({}, apiResponse_2.successAPIResponse()), { data: dataResponse, apiPath: request.path }));
     }
     else {
         const { errorMessage, errorCode } = request.body;
-        response.status(request.body.status).json(Object.assign({}, apiResponse_2.failedAPIResponse(errorMessage, errorCode)));
+        response.status(request.body.status).json(Object.assign(Object.assign({}, apiResponse_2.failedAPIResponse(errorMessage, errorCode)), { apiPath: request.path }));
     }
 }));
 dummy.get('*', (request, response) => __awaiter(void 0, void 0, void 0, function* () {

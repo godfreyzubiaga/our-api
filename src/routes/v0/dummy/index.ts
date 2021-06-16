@@ -11,10 +11,10 @@ dummy.post('*', async (request, response) => {
       ...request.body,
     }
     delete dataResponse.status
-    response.status(SUCCESS).json({ ...successAPIResponse(), data: dataResponse });
+    response.status(SUCCESS).json({ ...successAPIResponse(), data: dataResponse, apiPath: request.path });
   } else {
     const { errorMessage, errorCode } = request.body
-    response.status(request.body.status).json({ ...failedAPIResponse(errorMessage, errorCode) });
+    response.status(request.body.status).json({ ...failedAPIResponse(errorMessage, errorCode), apiPath: request.path });
   }
 });
 
