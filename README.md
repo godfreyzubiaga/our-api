@@ -9,7 +9,7 @@
 
 `URI: https://our-api.herokuapp.com/v0/:pathName`
 
-- pathName can be whatever you decide. (e.g. v0/users/guests/males)
+- pathName can be whatever you desire. (e.g. v0/users/guests/males)
 
 ## POST APIs samples
 
